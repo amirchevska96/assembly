@@ -1,0 +1,67 @@
+JMP main
+x: DW 12     ; int x = 12
+
+main:
+MOV A, [x]   ; vzamemo vsebino x
+AND A, 1     ; maskiramo tako da bi ostal le najmajnša cifra ki pomeni ce je 1 potem je število liho 
+CMP A, 0     ; if (x%2 = 0)
+JNE end      ; then end
+MOV A, [x]   ; else vzami vsebino x
+SHR A, 1     ; x = x/2
+MOV [x], A   ; sahranivamo veličino x-a v pomnilniku
+
+end:
+HLT
+
+;if (x < 100 || x >= 200) {
+;}
+;else {
+;x = x / 2;
+;}
+JMP main
+x: DW 10
+main:
+MOV A ,[x]
+CMP A,100
+JAE out
+CMP A,200
+JB out
+SHR A, 1
+MOV [x], A
+out:
+HLT
+
+
+;if (x % 2 == 0) {
+;x = x / 2;
+;}
+JMP main
+x: DW 11
+main:
+MOV A ,[x] ;x go klavame vo A
+MOV B, A
+AND A, 1
+CMP A, 1
+JE out
+SHR B, 1
+MOV [x], B
+out:
+HLT
+
+;if (x < 100 || x >= 200) {
+;}
+;else {
+;x = x / 2;
+;}
+
+JMP main
+x: DW 50
+main:
+MOV A, [x]
+CMP A, 100
+JAE out
+CMP A, 200
+JB out
+SHR A, 1
+out:
+HLT
