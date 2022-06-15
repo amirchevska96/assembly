@@ -1,0 +1,17 @@
+JMP main
+x: DW 1		;int x=1
+
+main:
+MOV B,[x]	; vzami vsebino "x"
+MOV A, 10	; A = 10
+
+for:
+CMP B, A	; If(x < 10)
+JC inc_x	; then x = x + 1
+
+MOV [x], B	; else sahrani vrednost "x" v pomnilniku
+HLT		; THE END
+
+inc_x:
+INC B		; x = x + 1
+JMP for			

@@ -1,0 +1,19 @@
+3.naloga
+
+; z = 16 · (x − y) + (x + y)/2
+JMP main 
+x: DW 30		;int x=30
+y: DW 20		;int y=20
+z: DW 0			;int z=0
+
+main:
+MOV A,[x]		;vzamemo vsebino x
+ADD A,[y]		;x+y
+SHR A, 1		;(x+y)/2
+MOV [z],A		;z=(x+y)/2
+MOV A,[x]		;vzamemo vsebino x
+SUB A,[y]		;x-y
+SHL A,4			;16*(x-y) **(ker nesmemo porabiti MUL)
+ADD A,[z]		;16*(x-y) + (x+y)/2	
+MOV [z],A		;rezultat sahranimo v "z"
+HLT

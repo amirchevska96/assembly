@@ -1,0 +1,17 @@
+merge sort , programiranje 2 vaje ,23.3
+*urejanje z zlivanjem*)
+
+let rec split seznam = match seznam with
+| [] | [_]  -> (seznam,[])
+| g1::g2::r -> let (sez1,sez2) = split r in (g1::sez1,g2::sez2);;
+
+let rec merge sez1 sez2 = match (sez1,sez2) with
+|[],_ -> sez2
+|_,[] -> sez1
+|g1::r1,g2::r2 -> if g1<g2 then g1::(merge r1 sez2) else g2::(merge sez1 r2);;
+
+let rec merge_sort seznam = match seznam with
+| [] | [_]  -> seznam
+| _ -> let (s1,s2) = split seznam in
+       let (sez1,sez2) = (merge_sort s1,merge_sort s2) in
+            merge sez1 sez2;;
